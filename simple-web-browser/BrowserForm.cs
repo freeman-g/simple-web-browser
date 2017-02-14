@@ -21,17 +21,20 @@ namespace simple_web_browser
         {
             InitializeComponent();
             this.history = new List<History>();
+            navigate();
         }
 
         private void go_Click(object sender, EventArgs e)
         {
             navigate();
-
         }
 
-        private void url_Enter(object sender, EventArgs e)
+        private void url_Enter(object sender, KeyEventArgs e)
         {
-            navigate();
+            if (e.KeyCode == Keys.Enter)
+            {
+                navigate();
+            }
         }
 
         private void navigate()
@@ -49,16 +52,19 @@ namespace simple_web_browser
             try
             {
                 simpleWebBrowser.Navigate(new Uri(address));
-                pushHistory(address);
             }
             catch (System.UriFormatException)
             {
                 return;
             }
+            finally
+            {
+                addHistory(address);
+            }
 
         }
 
-        private void pushHistory(string address)
+        private void addHistory(string address)
         {
             System.DateTime dateTime = DateTime.Now;
             this.history.Add(new History(address, dateTime));
@@ -99,5 +105,7 @@ namespace simple_web_browser
             }
 
         }
+
+       
     }
 }
