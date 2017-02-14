@@ -7,9 +7,9 @@
 
 # Dependencies
 
-This project depends on the [Newtonsoft Json.NET](http://www.newtonsoft.com/json) third party library.  You can install it with the NuGet Package:
+This project depends on the [Newtonsoft Json.NET](http://www.newtonsoft.com/json) third party library.  You can install it with the Visual Studio Package Manager:
 
 ```
-Install-Package Newtonsoft.Json -Version 9.0.1
+PM> Install-Package Newtonsoft.Json -Version 9.0.1
 ```
 
