@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,7 @@ namespace simple_web_browser
 
         private void navigate()
         {
-            string address = url.Text;
+            string address = navBox.Text;
 
             if (String.IsNullOrEmpty(address)) return;
             if (address.Equals("about:blank")) return;
@@ -59,7 +60,6 @@ namespace simple_web_browser
             }
             finally
             {
-                addHistory(address);
             }
 
         }
@@ -69,6 +69,10 @@ namespace simple_web_browser
             System.DateTime dateTime = DateTime.Now;
             this.history.Add(new History(address, dateTime));
 
+            FlowLayoutPanel panel = new FlowLayoutPanel();
+            panel.AutoSize = true;
+            panel.Margin = new Padding(10);
+
             Label dateLabel = new Label();
             Label addressLabel = new Label();
 
@@ -76,11 +80,12 @@ namespace simple_web_browser
             addressLabel.Text = address;
             addressLabel.AutoSize = true;
 
-            flowLayoutPanel3.Controls.Add(dateLabel);
-            flowLayoutPanel3.Controls.Add(addressLabel);
+            panel.Controls.Add(dateLabel);
+            panel.Controls.Add(addressLabel);
+            flowLayoutPanel3.Controls.Add(panel);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void exportHistory_Click(object sender, EventArgs e)
         {
 
             SaveFileDialog dialog = new SaveFileDialog();
@@ -106,6 +111,12 @@ namespace simple_web_browser
 
         }
 
-       
+        private void updateNavBox(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            string address = e.Url.ToString();
+            navBox.Text = address;
+            addHistory(address);
+        }
+
     }
 }

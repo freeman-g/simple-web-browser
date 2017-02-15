@@ -31,11 +31,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.simpleWebBrowser = new System.Windows.Forms.WebBrowser();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.url = new System.Windows.Forms.TextBox();
+            this.navBox = new System.Windows.Forms.TextBox();
             this.go = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.exportHistory = new System.Windows.Forms.Button();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -61,11 +61,12 @@
             this.simpleWebBrowser.Name = "simpleWebBrowser";
             this.simpleWebBrowser.Size = new System.Drawing.Size(899, 492);
             this.simpleWebBrowser.TabIndex = 0;
-            this.simpleWebBrowser.Url = new System.Uri("", System.UriKind.Relative);
+            this.simpleWebBrowser.Url = new System.Uri("http://www.google.com", System.UriKind.Absolute);
+            this.simpleWebBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.updateNavBox);
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.url);
+            this.flowLayoutPanel1.Controls.Add(this.navBox);
             this.flowLayoutPanel1.Controls.Add(this.go);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
@@ -73,15 +74,14 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(899, 29);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
-            // url
+            // navBox
             // 
-            this.url.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.url.Location = new System.Drawing.Point(3, 3);
-            this.url.Name = "url";
-            this.url.Size = new System.Drawing.Size(847, 22);
-            this.url.TabIndex = 1;
-            this.url.Text = "www.google.com";
-            this.url.KeyUp += new System.Windows.Forms.KeyEventHandler(this.url_Enter);
+            this.navBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBox.Location = new System.Drawing.Point(3, 3);
+            this.navBox.Name = "navBox";
+            this.navBox.Size = new System.Drawing.Size(847, 22);
+            this.navBox.TabIndex = 1;
+            this.navBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.url_Enter);
             // 
             // go
             // 
@@ -114,26 +114,26 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.button2);
+            this.flowLayoutPanel2.Controls.Add(this.exportHistory);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(908, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(264, 29);
             this.flowLayoutPanel2.TabIndex = 7;
             // 
-            // button2
+            // exportHistory
             // 
-            this.button2.Location = new System.Drawing.Point(3, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 22);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Export History";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.exportHistory.Location = new System.Drawing.Point(3, 3);
+            this.exportHistory.Name = "exportHistory";
+            this.exportHistory.Size = new System.Drawing.Size(88, 22);
+            this.exportHistory.TabIndex = 4;
+            this.exportHistory.Text = "Export History";
+            this.exportHistory.UseVisualStyleBackColor = true;
+            this.exportHistory.Click += new System.EventHandler(this.exportHistory_Click);
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.AutoScroll = true;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(908, 38);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(264, 492);
@@ -171,11 +171,11 @@
         private System.Windows.Forms.WebBrowser simpleWebBrowser;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TextBox url;
+        private System.Windows.Forms.TextBox navBox;
         private System.Windows.Forms.Button go;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button exportHistory;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
     }
 }
